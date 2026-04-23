@@ -3,8 +3,10 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 dependencyResolutionManagement {
     repositories {
-        System.getenv("GITHUB_ACTIONS")?.let {
-            maven("https://maven.aliyun.com/repository/public/")
+        if (System.getenv("GITHUB_ACTIONS") != "true") {
+            maven("https://mirrors.cloud.tencent.com/nexus/repository/maven-public")
+            // maven("https://maven.aliyun.com/repository/central")
+            // maven("https://maven.aliyun.com/repository/google")
         }
 
         google {
@@ -20,8 +22,9 @@ dependencyResolutionManagement {
 
 pluginManagement {
     repositories {
-        System.getenv("GITHUB_ACTIONS")?.let {
-            maven("https://maven.aliyun.com/repository/gradle-plugin/")
+        if (System.getenv("GITHUB_ACTIONS") != "true") {
+            maven("https://maven.aliyun.com/repository/central")
+            maven("https://maven.aliyun.com/repository/gradle-plugin")
         }
 
         google {
